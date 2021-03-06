@@ -7,7 +7,7 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +53 application.py
+badd +59 application.py
 badd +4 requirements.txt
 badd +1 helpers.py
 badd +1 finance.db
@@ -22,8 +22,8 @@ badd +18 ~/dotfiles/config/nvim/coc-settings.json
 badd +21 templates/buy.html
 badd +21 templates/sell.html
 badd +26 templates/history.html
-badd +0 __pycache__/helpers.cpython-38.pyc
-badd +0 __pycache__/application.cpython-38.pyc
+badd +1 __pycache__/helpers.cpython-38.pyc
+badd +1 __pycache__/application.cpython-38.pyc
 argglobal
 %argdel
 $argadd application.py
@@ -47,12 +47,12 @@ setlocal fml=1
 setlocal fdn=20
 setlocal fen
 silent! normal! zE
-let s:l = 53 - ((7 * winheight(0) + 19) / 38)
+let s:l = 71 - ((31 * winheight(0) + 17) / 35)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-53
-normal! 015|
+71
+normal! 067|
 tabedit templates/index.html
 set splitbelow splitright
 set nosplitbelow
@@ -72,12 +72,12 @@ setlocal fml=1
 setlocal fdn=20
 setlocal fen
 silent! normal! zE
-let s:l = 30 - ((29 * winheight(0) + 19) / 38)
+let s:l = 15 - ((5 * winheight(0) + 17) / 35)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-30
-normal! 036|
+15
+normal! 019|
 tabedit templates/history.html
 set splitbelow splitright
 set nosplitbelow
@@ -97,13 +97,13 @@ setlocal fml=1
 setlocal fdn=20
 setlocal fen
 silent! normal! zE
-let s:l = 13 - ((6 * winheight(0) + 19) / 38)
+let s:l = 13 - ((5 * winheight(0) + 17) / 35)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
 13
 normal! 017|
-tabnext 1
+tabnext 2
 set stal=1
 if exists('s:wipebuf') && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf

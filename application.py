@@ -1,4 +1,3 @@
-# HELLO
 import os
 
 from datetime import datetime
@@ -52,7 +51,24 @@ def index():
     cash = db.execute("SELECT cash FROM users WHERE id=?", session["user_id"])
     temp = cash[0]["cash"]
     cash = temp
-    return render_template("index.html", cash=cash)
+
+    txn = db.execute("SELECT * FROM txn WHERE user_id=?", session["user_id"])
+    stock_list = db.execute(
+        "SELECT DISTINCT stock_name, company_name FROM txn WHERE user_id=?", session["user_id"])
+
+    summary = []
+
+    for x in stock_list:
+        stock_dict = {}
+        stock_dict["stock_name"] = x["stock_name"]
+        stock_dict["company_name"] = x["company_name"]
+        stock_dict["qty"] = db.execute(
+            "SELECT SUM(qty) FROM txn WHERE stock_name=?", x["stock_name"])[0]["SUM(qty)"]
+        stock_dict["price"] = lookup(x["stock_name"])["price"]
+        stock_dict["total"] = stock_dict["qty"] * stock_dict["price"]
+        summary.append(stock_dict)
+
+    return render_template("index.html", cash=cash, summary=summary)
 
 
 @app.route("/buy", methods=["GET", "POST"])
@@ -206,10 +222,9 @@ def sell():
     for x in stock_list:
         for y in stocks:  # type: ignore
             if x == y["stock_name"]:
-                if x in stock_qty:
-                    stock_qty[x] += y["qty"]
-                else:
+                if x not in stock_qty:
                     stock_qty[x] = y["qty"]
+                stock_qty[x] += y["qty"]
 
     if request.method == "GET":
         return render_template("sell.html", stock_qty=stock_qty, stock_dict=stock_dict, x=stock_qty)
