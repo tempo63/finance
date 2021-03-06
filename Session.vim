@@ -7,7 +7,7 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +150 application.py
+badd +53 application.py
 badd +4 requirements.txt
 badd +1 helpers.py
 badd +1 finance.db
@@ -47,12 +47,12 @@ setlocal fml=1
 setlocal fdn=20
 setlocal fen
 silent! normal! zE
-let s:l = 83 - ((31 * winheight(0) + 19) / 38)
+let s:l = 53 - ((7 * winheight(0) + 19) / 38)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-83
-normal! 094|
+53
+normal! 015|
 tabedit templates/index.html
 set splitbelow splitright
 set nosplitbelow
@@ -72,12 +72,12 @@ setlocal fml=1
 setlocal fdn=20
 setlocal fen
 silent! normal! zE
-let s:l = 25 - ((24 * winheight(0) + 19) / 38)
+let s:l = 30 - ((29 * winheight(0) + 19) / 38)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-25
-normal! 019|
+30
+normal! 036|
 tabedit templates/history.html
 set splitbelow splitright
 set nosplitbelow
@@ -103,7 +103,7 @@ exe s:l
 normal! zt
 13
 normal! 017|
-tabnext 2
+tabnext 1
 set stal=1
 if exists('s:wipebuf') && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf

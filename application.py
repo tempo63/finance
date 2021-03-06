@@ -48,39 +48,10 @@ if not os.environ.get("API_KEY"):
 @login_required
 def index():
     """Show portfolio of stocks"""
-    cash = db.execute(
-        "SELECT cash FROM users WHERE id = ?", session["user_id"])
-    temp = cash[0]["cash"]  # type: ignore
+    cash = db.execute("SELECT cash FROM users WHERE id=?", session["user_id"])
+    temp = cash[0]["cash"]
     cash = temp
-
-    stocks = db.execute(
-        "SELECT * FROM txn WHERE user_id=?", session["user_id"])
-    stock_dict = db.execute(
-        "SELECT DISTINCT stock_name,company_name FROM txn WHERE user_id=?", session["user_id"])
-
-    # Create a list of stocks the user owns
-    stock_list = []
-    stock_qty = {}
-    for x in stock_dict:  # type: ignore
-        stock_list.append(x["stock_name"])
-
-    for x in stock_list:
-        for y in stocks:  # type: ignore
-            if x == y["stock_name"]:
-                if x in stock_qty:
-                    stock_qty[x] += y["qty"]
-                else:
-                    stock_qty[x] = y["qty"]
-    owned_stock = {}
-    for symbol in stock_list:
-        x = db.execute(
-            "SELECT SUM(qty) FROM txn WHERE stock_name=? AND user_id=?", symbol, session["user_id"])
-        y = x[0]['SUM(qty)']  # type: ignore
-
-        if y > 0:
-            owned_stock[symbol] = y
-
-    return render_template("index.html", cash=cash, stock_qty=stock_qty, stock_dict=stock_dict, x=owned_stock)
+    return render_template("index.html", cash=cash)
 
 
 @app.route("/buy", methods=["GET", "POST"])
