@@ -16,8 +16,10 @@ How much is the fish? test 1 2 4....
     </tr>
 </table>
 
-1.egy
-1.ketto
-1.harom
+<ol>
+    <li>1.egy</li>
+    <li>1.ketto</li>
+    <li>1.harom</li>
+</ol>
 
 -[]this is not complete -[x]this is complete
