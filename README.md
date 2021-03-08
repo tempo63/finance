@@ -6,11 +6,15 @@
 
 How much is the fish? test 1 2 4....
 
--egy
--ketto
--harom
--negy
--ot
+<table>
+    <tr>
+        <td>-egy</td>
+        <td>-ketto</td>
+        <td>-harom</td>
+        <td>-negy</td>
+        <td>-ot</td>
+    </tr>
+</table>
 
 1.egy
 1.ketto
