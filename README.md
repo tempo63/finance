@@ -6,6 +6,8 @@
 
 How much is the fish? test 1 2 4....
 
+<input type="text" autofocus placeholder="Hello", name="testText">
+
 <table>
     <tr>
         <td>-egy</td>
@@ -21,5 +23,3 @@ How much is the fish? test 1 2 4....
     <li>1.ketto</li>
     <li>1.harom</li>
 </ol>
-
--[]this is not complete -[x]this is complete
